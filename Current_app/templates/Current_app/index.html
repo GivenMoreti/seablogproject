@@ -1,0 +1,154 @@
+{% extends 'Current_app/base.html' %} {%block content%}
+<style>
+  body {
+    background-color: #0077b6;
+    background: radial-gradient(160deg, #0077b6, #0096c7);
+    color: black;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+  }
+  .currents {
+    color: #fff;
+  }
+  .header {
+    text-align: center;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    word-spacing: 100px;
+  }
+  .header a {
+    opacity: 0.9;
+    color: #fff;
+    text-align: center;
+    gap: 20px;
+    font-size: 1.6em;
+    text-decoration: none;
+    text-shadow: 4px 10px 20px #fff;
+  }
+  .header a:hover {
+    color: orangered;
+  }
+
+  .posts-heading h1 {
+    font-size: 2em;
+    text-align: center;
+    color: #fff;
+    text-shadow: 4px 10px 20px #fff;
+  }
+  .actual-post {
+    background-color: #0077b6;
+    list-style: none;
+    margin: 10px;
+    width: 99%;
+    height: 150px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 20px 15px 50px #fff;
+  }
+  .actual-post li,
+  h2 {
+    margin: 5px;
+    color: white;
+  }
+  .actual-post p {
+    background-color: #037ec0;
+    height: 60px;
+    width: 90%;
+    margin: 5px;
+    border-radius: 5px;
+    color: #fff;
+    opacity: 0.9;
+    text-wrap: wrap;
+  }
+  .actual-post h5 {
+    opacity: 0.5;
+    color: #fff;
+  }
+  .actual-post a {
+    opacity: 0.5;
+    margin: 10px;
+    font-size: 1.1em;
+  }
+  .buttons a {
+    text-decoration: none;
+  }
+  .buttons a:hover {
+    color: red;
+    font-weight: 700;
+  }
+  .current-waves a {
+    margin: 5px;
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #fff;
+    background-color: rgb(15, 81, 168);
+    border: none;
+    border-radius: 5px;
+  }
+  .current-waves {
+  }
+
+  .current-heading h1 {
+    opacity: 0.8;
+  }
+  .footer {
+    color: #fff;
+  }
+  .topics a,
+  .footer a {
+    font-size: 1em;
+    text-decoration: none;
+    color: blue;
+    opacity: 0.8;
+    margin: 10px;
+  }
+</style>
+<body>
+  <div class="homepage">
+    <!-- currents starts here -->
+    <div class="currents">
+      <div class="current-waves">
+        {% for current in currents %}
+        <a href="">{{current.name}}</a>
+        <a href="">{{current.description}}</a>
+
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- posts starts here -->
+    <div class="posts">
+      <div class="posts-heading">
+        <h1>Posts related</h1>
+      </div>
+
+      {% for post in posts %}
+
+      <div class="actual-post">
+        <h2>{{post.topic}}</h2>
+
+        <p>{{post.message}}</p>
+        <div class="buttons">
+          <a href="">Reply</a>
+          <a href="">Wave</a>
+          <a href="">Share</a>
+          <a href="">Remove</a>
+        </div>
+        <a> created {{post.created_at| timesince}} ago</a>
+        <a>creator @{{post.created_by}}</a>
+        <a> updated @{{post.updated_by}}</a>
+      </div>
+
+      {% endfor %}
+    </div>
+    <!-- topics starts here -->
+    <div class="topics">
+      <!-- <h1>Topics</h1> -->
+
+      {% for topic in topics %}
+      <a>{{topic.subject}}</a>
+      <a href="#"> Written by @{{topic.starter}}</a>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+{% endblock %}
